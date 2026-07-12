@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git fetch *)",
+      "Bash(env -u DATABASE_URL PAYLOAD_SECRET=test PORT=3999 node -e ' *)",
+      "Bash(DATABASE_URL='' PAYLOAD_SECRET=test PORT=3999 timeout 8 node --experimental-strip-types -e ' *)",
+      "Bash(DATABASE_URL= PAYLOAD_SECRET=test npx tsx -e \"import\\('./payload.config.ts'\\).then\\(\\(\\)=>console.log\\('loaded ok'\\)\\).catch\\(e=>console.log\\('CAUGHT:', e.message\\)\\)\")",
+      "Bash(DATABASE_URL=\"postgres://x:x@localhost:5432/x\" PAYLOAD_SECRET= npx tsx -e \"import\\('./payload.config.ts'\\).then\\(\\(\\)=>console.log\\('loaded ok'\\)\\).catch\\(e=>console.log\\('CAUGHT:', e.message\\)\\)\")",
+      "Bash(DATABASE_URL=postgres://x:x@host/db?sslmode=require PAYLOAD_SECRET=test npx tsx -e ' *)",
+      "Bash(node -e \"console.log\\(/sslmode=require|ssl=true/i.test\\('postgres://x:x@host/db?sslmode=require'\\)\\)\")",
+      "Bash(node -e \"console.log\\(/sslmode=require|ssl=true/i.test\\('postgres://postgres:postgres@127.0.0.1:5432/makna-aqiqah'\\)\\)\")",
+      "Bash(curl -s -o /dev/null -w \"root: HTTP %{http_code}\\\\n\" http://localhost:3001/ --max-time 15)",
+      "Bash(curl -s -o /dev/null -w \"api/globals/home-page: HTTP %{http_code}\\\\n\" http://localhost:3001/api/globals/home-page --max-time 15)",
+      "Bash(pkill -9 -f \"next start\")",
+      "Bash(pkill -9 -f \"next-server\")"
+    ]
+  }
+}
