@@ -392,6 +392,7 @@ export interface HomePage {
   heroSubtitle: string;
   heroCtaLabel: string;
   heroSecondaryCtaLabel: string;
+  heroImage?: (number | null) | Media;
   highlightTitle: string;
   highlightDescription: string;
   highlights?:
@@ -447,6 +448,17 @@ export interface HomePage {
    * Individual testimonials are managed in the Testimonials collection.
    */
   testimonialsDescription: string;
+  galleryEyebrow: string;
+  galleryTitle: string;
+  galleryDescription: string;
+  galleryImages?:
+    | {
+        image: number | Media;
+        caption?: string | null;
+        size: 'normal' | 'wide' | 'tall' | 'large';
+        id?: string | null;
+      }[]
+    | null;
   ctaTitle: string;
   ctaDescription: string;
   ctaButtonLabel: string;
@@ -492,6 +504,7 @@ export interface HomePageSelect<T extends boolean = true> {
   heroSubtitle?: T;
   heroCtaLabel?: T;
   heroSecondaryCtaLabel?: T;
+  heroImage?: T;
   highlightTitle?: T;
   highlightDescription?: T;
   highlights?:
@@ -544,6 +557,17 @@ export interface HomePageSelect<T extends boolean = true> {
   testimonialsEyebrow?: T;
   testimonialsTitle?: T;
   testimonialsDescription?: T;
+  galleryEyebrow?: T;
+  galleryTitle?: T;
+  galleryDescription?: T;
+  galleryImages?:
+    | T
+    | {
+        image?: T;
+        caption?: T;
+        size?: T;
+        id?: T;
+      };
   ctaTitle?: T;
   ctaDescription?: T;
   ctaButtonLabel?: T;

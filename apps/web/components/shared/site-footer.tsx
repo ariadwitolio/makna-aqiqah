@@ -15,6 +15,7 @@ function TikTokIcon({ className }: { className?: string }) {
 
 export function SiteFooter({ footer }: SiteFooterProps) {
   const socials = [
+    footer.whatsapp ? { href: `https://wa.me/${footer.whatsapp}`, label: 'WhatsApp', Icon: MessageCircle } : null,
     footer.instagram ? { href: footer.instagram, label: 'Instagram', Icon: Instagram } : null,
     footer.facebook ? { href: footer.facebook, label: 'Facebook', Icon: Facebook } : null,
     footer.tiktok ? { href: footer.tiktok, label: 'TikTok', Icon: TikTokIcon } : null,
@@ -22,55 +23,39 @@ export function SiteFooter({ footer }: SiteFooterProps) {
 
   return (
     <footer className="rounded-[32px] border border-brand-border bg-white p-8 shadow-soft lg:p-10">
-      <div className="grid gap-8 md:grid-cols-2">
-        <div>
-          <p className="text-lg font-bold text-brand-textPrimary">{footer.companyName}</p>
+      <div className="flex flex-col items-center gap-4 text-center">
+        <p className="text-lg font-bold text-brand-textPrimary">{footer.companyName}</p>
 
-          {footer.address ? (
-            <div className="mt-4 flex items-start gap-2 text-sm text-brand-textSecondary">
-              <MapPin className="mt-0.5 h-4 w-4 flex-shrink-0 text-brand-primary" />
-              <span className="whitespace-pre-line">{footer.address}</span>
-            </div>
-          ) : null}
+        {footer.address ? (
+          <div className="flex items-start gap-2 text-sm text-brand-textSecondary">
+            <MapPin className="mt-0.5 h-4 w-4 flex-shrink-0 text-brand-primary" />
+            <span className="whitespace-pre-line">{footer.address}</span>
+          </div>
+        ) : null}
 
-          {footer.operationalHours ? (
-            <div className="mt-2 flex items-center gap-2 text-sm text-brand-textSecondary">
-              <Clock className="h-4 w-4 flex-shrink-0 text-brand-primary" />
-              <span>{footer.operationalHours}</span>
-            </div>
-          ) : null}
-        </div>
+        {footer.operationalHours ? (
+          <div className="flex items-center gap-2 text-sm text-brand-textSecondary">
+            <Clock className="h-4 w-4 flex-shrink-0 text-brand-primary" />
+            <span>{footer.operationalHours}</span>
+          </div>
+        ) : null}
 
-        <div className="flex flex-col gap-4 md:items-end">
-          {footer.whatsapp ? (
-            <a
-              href={`https://wa.me/${footer.whatsapp}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-sm font-semibold text-brand-textPrimary hover:text-brand-primaryDark"
-            >
-              <MessageCircle className="h-4 w-4 text-brand-primary" />
-              WhatsApp
-            </a>
-          ) : null}
-
-          {socials.length > 0 ? (
-            <div className="flex items-center gap-4">
-              {socials.map(({ href, label, Icon }) => (
-                <a
-                  key={label}
-                  href={href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={label}
-                  className="flex h-9 w-9 items-center justify-center rounded-full border border-brand-border text-brand-textSecondary transition-colors hover:border-brand-primaryDark hover:text-brand-primaryDark"
-                >
-                  <Icon className="h-4 w-4" />
-                </a>
-              ))}
-            </div>
-          ) : null}
-        </div>
+        {socials.length > 0 ? (
+          <div className="flex items-center gap-4">
+            {socials.map(({ href, label, Icon }) => (
+              <a
+                key={label}
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={label}
+                className="flex h-9 w-9 items-center justify-center rounded-full border border-brand-border text-brand-textSecondary transition-colors hover:border-brand-primaryDark hover:text-brand-primaryDark"
+              >
+                <Icon className="h-4 w-4" />
+              </a>
+            ))}
+          </div>
+        ) : null}
       </div>
 
       <p className="mt-8 border-t border-brand-border/40 pt-6 text-center text-xs text-brand-textSecondary">

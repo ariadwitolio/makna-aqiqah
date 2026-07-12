@@ -12,7 +12,13 @@
       "Bash(curl -s -o /dev/null -w \"root: HTTP %{http_code}\\\\n\" http://localhost:3001/ --max-time 15)",
       "Bash(curl -s -o /dev/null -w \"api/globals/home-page: HTTP %{http_code}\\\\n\" http://localhost:3001/api/globals/home-page --max-time 15)",
       "Bash(pkill -9 -f \"next start\")",
-      "Bash(pkill -9 -f \"next-server\")"
+      "Bash(pkill -9 -f \"next-server\")",
+      "Bash(xargs -I{} echo {})",
+      "Bash(rtk grep *)",
+      "Bash(rtk find *)",
+      "Bash(rtk wc *)",
+      "Bash(rtk read *)",
+      "Bash(rtk tsc *)"
     ]
   }
 }

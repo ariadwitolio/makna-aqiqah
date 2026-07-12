@@ -8,9 +8,11 @@ interface HeroSectionProps {
   subtitle: string
   ctaLabel: string
   secondaryCtaLabel: string
+  imageUrl?: string | null
+  imageAlt?: string
 }
 
-export function HeroSection({ badgeLabel, title, subtitle, ctaLabel, secondaryCtaLabel }: HeroSectionProps) {
+export function HeroSection({ badgeLabel, title, subtitle, ctaLabel, secondaryCtaLabel, imageUrl, imageAlt }: HeroSectionProps) {
   const containerVariants = {
     hidden: { opacity: 0 },
     show: {
@@ -38,27 +40,41 @@ export function HeroSection({ badgeLabel, title, subtitle, ctaLabel, secondaryCt
       animate="show"
       className="rounded-[32px] border border-brand-border bg-gradient-to-br from-white to-brand-background/50 p-8 shadow-soft backdrop-blur-sm lg:p-12"
     >
-      <motion.div variants={itemVariants} className="mb-8 inline-flex items-center gap-2 rounded-full bg-brand-primary/15 px-4 py-1.5 text-sm font-medium text-brand-textPrimary">
-        <div className="h-2 w-2 rounded-full bg-brand-primary animate-pulse" />
-        {badgeLabel}
-      </motion.div>
+      <div className="flex flex-col gap-10 lg:flex-row lg:items-center">
+        <div className="flex-1">
+          <motion.div variants={itemVariants} className="mb-8 inline-flex items-center gap-2 rounded-full bg-brand-primary/15 px-4 py-1.5 text-sm font-medium text-brand-textPrimary">
+            <div className="h-2 w-2 rounded-full bg-brand-primary animate-pulse" />
+            {badgeLabel}
+          </motion.div>
 
-      <motion.h1 variants={itemVariants} className="max-w-3xl text-4xl font-bold tracking-tight text-brand-textPrimary sm:text-5xl lg:text-6xl leading-tight">
-        {title}
-      </motion.h1>
+          <motion.h1 variants={itemVariants} className="max-w-3xl text-4xl font-bold tracking-tight text-brand-textPrimary sm:text-5xl lg:text-6xl leading-tight">
+            {title}
+          </motion.h1>
 
-      <motion.p variants={itemVariants} className="mt-6 max-w-2xl text-lg leading-relaxed text-brand-textSecondary">
-        {subtitle}
-      </motion.p>
+          <motion.p variants={itemVariants} className="mt-6 max-w-2xl text-lg leading-relaxed text-brand-textSecondary">
+            {subtitle}
+          </motion.p>
 
-      <motion.div variants={itemVariants} className="mt-10 flex flex-col gap-4 sm:flex-row sm:flex-wrap">
-        <Button size="lg" className="w-full sm:w-auto">
-          {ctaLabel}
-        </Button>
-        <Button variant="outline" size="lg" className="w-full sm:w-auto">
-          {secondaryCtaLabel} <ArrowRight className="ml-2 h-4 w-4" />
-        </Button>
-      </motion.div>
+          <motion.div variants={itemVariants} className="mt-10 flex flex-col gap-4 sm:flex-row sm:flex-wrap">
+            <Button size="lg" className="w-full sm:w-auto">
+              {ctaLabel}
+            </Button>
+            <Button variant="outline" size="lg" className="w-full sm:w-auto">
+              {secondaryCtaLabel} <ArrowRight className="ml-2 h-4 w-4" />
+            </Button>
+          </motion.div>
+        </div>
+
+        {imageUrl ? (
+          <motion.div variants={itemVariants} className="flex-shrink-0 lg:w-2/5">
+            <img
+              src={imageUrl}
+              alt={imageAlt ?? title}
+              className="aspect-[4/3] w-full rounded-[24px] object-cover shadow-md lg:aspect-square"
+            />
+          </motion.div>
+        ) : null}
+      </div>
     </motion.div>
   )
 }

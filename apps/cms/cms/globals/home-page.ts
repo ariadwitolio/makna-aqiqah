@@ -56,6 +56,12 @@ export const homePage: GlobalConfig = {
               label: 'Hero Secondary CTA Label',
               defaultValue: 'Lihat Paket',
             },
+            {
+              name: 'heroImage',
+              type: 'upload',
+              relationTo: 'media',
+              label: 'Hero Image',
+            },
           ],
         },
         {
@@ -307,6 +313,54 @@ export const homePage: GlobalConfig = {
               label: 'Testimonials Description',
               defaultValue: 'Kepercayaan dari ratusan keluarga adalah kebahagiaan terbesar kami.',
               admin: { description: 'Individual testimonials are managed in the Testimonials collection.' },
+            },
+          ],
+        },
+        {
+          label: 'Gallery',
+          fields: [
+            {
+              name: 'galleryEyebrow',
+              type: 'text',
+              required: true,
+              label: 'Gallery Eyebrow',
+              defaultValue: 'Galeri',
+            },
+            {
+              name: 'galleryTitle',
+              type: 'text',
+              required: true,
+              label: 'Gallery Title',
+              defaultValue: 'Momen berkesan yang telah kami abadikan',
+            },
+            {
+              name: 'galleryDescription',
+              type: 'textarea',
+              required: true,
+              label: 'Gallery Description',
+              defaultValue: 'Sekilas dokumentasi perayaan aqiqah bersama keluarga yang telah mempercayakan momen istimewanya kepada kami.',
+            },
+            {
+              name: 'galleryImages',
+              type: 'array',
+              label: 'Gallery Images',
+              fields: [
+                { name: 'image', type: 'upload', relationTo: 'media', required: true, label: 'Image' },
+                { name: 'caption', type: 'text', label: 'Caption' },
+                {
+                  name: 'size',
+                  type: 'select',
+                  required: true,
+                  label: 'Tile Size',
+                  defaultValue: 'normal',
+                  options: [
+                    { label: 'Normal', value: 'normal' },
+                    { label: 'Wide', value: 'wide' },
+                    { label: 'Tall', value: 'tall' },
+                    { label: 'Large', value: 'large' },
+                  ],
+                },
+              ],
             },
           ],
         },

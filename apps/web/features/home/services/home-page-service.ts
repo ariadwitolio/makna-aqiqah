@@ -7,6 +7,7 @@ interface HomePageDoc {
   heroSubtitle: string
   heroCtaLabel: string
   heroSecondaryCtaLabel: string
+  heroImage?: { url?: string | null; alt?: string | null } | number | string | null
 
   highlightTitle: string
   highlightDescription: string
@@ -39,6 +40,15 @@ interface HomePageDoc {
   testimonialsTitle: string
   testimonialsDescription: string
 
+  galleryEyebrow: string
+  galleryTitle: string
+  galleryDescription: string
+  galleryImages?: Array<{
+    image?: { url?: string | null; alt?: string | null } | number | string | null
+    caption?: string | null
+    size: 'normal' | 'wide' | 'tall' | 'large'
+  }> | null
+
   ctaTitle: string
   ctaDescription: string
   ctaButtonLabel: string
@@ -58,9 +68,11 @@ interface TestimonialsResponse {
 
 export async function getHomePageContent(): Promise<HomePageContent> {
   const [doc, testimonialsRes] = await Promise.all([
-    fetchCMS<HomePageDoc>('/api/globals/home-page'),
+    fetchCMS<HomePageDoc>('/api/globals/home-page?depth=1'),
     fetchCMS<TestimonialsResponse>('/api/testimonials?depth=1&sort=-createdAt&limit=50'),
   ])
+
+  const heroImage = doc.heroImage && typeof doc.heroImage === 'object' ? doc.heroImage : null
 
   return {
     badgeLabel: doc.badgeLabel,
@@ -68,6 +80,8 @@ export async function getHomePageContent(): Promise<HomePageContent> {
     heroSubtitle: doc.heroSubtitle,
     heroCtaLabel: doc.heroCtaLabel,
     heroSecondaryCtaLabel: doc.heroSecondaryCtaLabel,
+    heroImageUrl: resolveCmsMediaUrl(heroImage?.url),
+    heroImageAlt: heroImage?.alt ?? doc.heroTitle,
 
     highlightTitle: doc.highlightTitle,
     highlightDescription: doc.highlightDescription,
@@ -107,6 +121,20 @@ export async function getHomePageContent(): Promise<HomePageContent> {
         quote: testimonial.quote,
         photoUrl: resolveCmsMediaUrl(photo?.url),
         photoAlt: photo?.alt ?? testimonial.name,
+      }
+    }),
+
+    galleryEyebrow: doc.galleryEyebrow,
+    galleryTitle: doc.galleryTitle,
+    galleryDescription: doc.galleryDescription,
+    galleryImages: (doc.galleryImages ?? []).map((item, index) => {
+      const image = item.image && typeof item.image === 'object' ? item.image : null
+      return {
+        id: String(index),
+        imageUrl: resolveCmsMediaUrl(image?.url),
+        imageAlt: image?.alt ?? doc.galleryTitle,
+        caption: item.caption ?? null,
+        size: item.size,
       }
     }),
 

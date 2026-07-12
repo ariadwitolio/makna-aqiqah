@@ -9,6 +9,7 @@ import { PackageCardGrid } from '@/components/sections/package-card-grid'
 import { OrderFlowSection } from '@/components/sections/order-flow-section'
 import { InfoSection } from '@/components/sections/info-section'
 import { TestimonialGrid } from '@/components/sections/testimonial-grid'
+import { GalleryBentoGrid } from '@/components/sections/gallery-bento-grid'
 import { FloatingWhatsAppButton } from '@/components/shared/floating-whatsapp-button'
 import { SiteFooter } from '@/components/shared/site-footer'
 import type { HomePageContent } from '@/features/home/types'
@@ -75,6 +76,8 @@ export function HomePageClient({ content, siteSettings }: HomePageClientProps) {
               subtitle={content.heroSubtitle}
               ctaLabel={content.heroCtaLabel}
               secondaryCtaLabel={content.heroSecondaryCtaLabel}
+              imageUrl={content.heroImageUrl}
+              imageAlt={content.heroImageAlt}
             />
             <HighlightCardGrid title={content.highlightTitle} description={content.highlightDescription} highlights={content.highlights} />
           </div>
@@ -149,6 +152,22 @@ export function HomePageClient({ content, siteSettings }: HomePageClientProps) {
               title={content.testimonialsTitle}
               description={content.testimonialsDescription}
               testimonials={content.testimonials}
+            />
+          </motion.div>
+
+          {/* Gallery Section */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true, margin: '-100px' }}
+            id="gallery"
+          >
+            <GalleryBentoGrid
+              eyebrow={content.galleryEyebrow}
+              title={content.galleryTitle}
+              description={content.galleryDescription}
+              images={content.galleryImages}
             />
           </motion.div>
 

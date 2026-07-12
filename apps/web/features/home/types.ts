@@ -4,6 +4,8 @@ export interface HomePageContent {
   heroSubtitle: string
   heroCtaLabel: string
   heroSecondaryCtaLabel: string
+  heroImageUrl: string | null
+  heroImageAlt: string
 
   highlightTitle: string
   highlightDescription: string
@@ -56,6 +58,17 @@ export interface HomePageContent {
     quote: string
     photoUrl: string | null
     photoAlt: string
+  }>
+
+  galleryEyebrow: string
+  galleryTitle: string
+  galleryDescription: string
+  galleryImages: Array<{
+    id: string
+    imageUrl: string | null
+    imageAlt: string
+    caption: string | null
+    size: 'normal' | 'wide' | 'tall' | 'large'
   }>
 
   ctaTitle: string
