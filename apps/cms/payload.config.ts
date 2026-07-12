@@ -9,9 +9,6 @@ import { homePage } from './cms/globals/home-page.js'
 import { siteSettings } from './cms/globals/site-settings.js'
 
 export default buildConfig({
-  admin: {
-    user: users.slug,
-  },
   routes: {
     admin: '/admin',
   },
@@ -20,10 +17,13 @@ export default buildConfig({
   globals: [siteSettings, homePage],
   db: postgresAdapter({
     pool: {
+      connectionString: process.env.DATABASE_URL,
+    },
+    /*pool: {
       connectionString:
         process.env.DATABASE_URL ||
         'postgres://postgres:postgres@127.0.0.1:5432/makna-aqiqah',
-    },
+    },*/
   }),
   secret: process.env.PAYLOAD_SECRET || 'changeme',
   typescript: {
