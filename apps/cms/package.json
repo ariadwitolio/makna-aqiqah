@@ -1,0 +1,31 @@
+{
+  "name": "makna-aqiqah-cms",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "next dev -p 3001",
+    "build": "next build",
+    "start": "next start -p 3001"
+  },
+  "dependencies": {
+    "@payloadcms/db-postgres": "^3.86.0",
+    "@payloadcms/next": "^3.86.0",
+    "@payloadcms/richtext-lexical": "^3.86.0",
+    "dotenv": "^16.4.0",
+    "express": "^4.21.2",
+    "graphql": "^16.14.0",
+    "next": "^16.2.10",
+    "payload": "^3.86.0",
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "@types/node": "^22.0.0",
+    "@types/react": "^19.2.17",
+    "@types/react-dom": "^19.2.3",
+    "tsx": "^4.23.0",
+    "typescript": "^5.8.3"
+  }
+}
