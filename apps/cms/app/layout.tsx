@@ -1,9 +1,9 @@
 import '@payloadcms/next/css'
 
-import config from '@/payload.config'
+import config from '../payload.config.js'
 import { handleServerFunctions, RootLayout } from '@payloadcms/next/layouts'
 
-import { importMap } from './admin/importMap'
+import { importMap } from './admin/importMap.js'
 
 const serverFunction = async function (args: any) {
   'use server'
