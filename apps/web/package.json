@@ -7,14 +7,18 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "preview": "opennextjs-cloudflare preview",
+    "deploy": "opennextjs-cloudflare deploy"
   },
   "dependencies": {
+    "@opennextjs/cloudflare": "1.14.2",
     "next": "15.4.11",
     "react": "19.2.0",
     "react-dom": "19.2.0",
     "framer-motion": "^11.11.10",
     "lucide-react": "^0.468.0",
+    "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.0",
     "tailwind-merge": "^2.4.0"
   },
