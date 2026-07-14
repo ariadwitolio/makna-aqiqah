@@ -1,14 +1,17 @@
 import { motion } from 'framer-motion'
 import { SectionHeading } from '@/components/shared/section-heading'
+import { resolveIcon } from '@/lib/icon-map'
 
 interface ContentGridSectionProps {
   eyebrow: string
   title: string
   description: string
   secondaryDescription: string
+  secondaryImageUrl?: string | null
   items: Array<{
     title: string
     description: string
+    icon: string
   }>
 }
 
@@ -32,7 +35,14 @@ const itemVariants = {
   },
 }
 
-export function ContentGridSection({ eyebrow, title, description, secondaryDescription, items }: ContentGridSectionProps) {
+export function ContentGridSection({
+  eyebrow,
+  title,
+  description,
+  secondaryDescription,
+  secondaryImageUrl,
+  items,
+}: ContentGridSectionProps) {
   return (
     <section className="grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
       <motion.div
@@ -49,27 +59,39 @@ export function ContentGridSection({ eyebrow, title, description, secondaryDescr
           className="mt-8 pt-6 border-t border-brand-border/30"
         >
           <p className="text-sm text-brand-textSecondary leading-relaxed">{secondaryDescription}</p>
+          {secondaryImageUrl ? (
+            <img
+              src={secondaryImageUrl}
+              alt={title}
+              className="mt-6 aspect-video w-full rounded-2xl object-cover shadow-sm"
+            />
+          ) : null}
         </motion.div>
       </motion.div>
 
       <motion.div variants={containerVariants} initial="hidden" animate="show" className="grid gap-4 md:grid-cols-2">
-        {items.map((item) => (
-          <motion.div
-            key={item.title}
-            variants={itemVariants}
-            whileHover={{ scale: 1.02, y: -4 }}
-            className="group rounded-[28px] border border-brand-border bg-gradient-to-br from-white to-brand-background p-6 shadow-soft transition-all hover:shadow-md"
-          >
+        {items.map((item) => {
+          const Icon = resolveIcon(item.icon)
+          return (
             <motion.div
-              initial={{ scale: 0 }}
-              animate={{ scale: 1 }}
-              transition={{ delay: 0.2, type: 'spring', stiffness: 200 }}
-              className="mb-4 h-10 w-10 rounded-2xl bg-gradient-to-br from-brand-primary/20 to-brand-primary/10 transition-all group-hover:from-brand-primary/30 group-hover:to-brand-primary/15"
-            />
-            <h3 className="font-semibold text-brand-textPrimary">{item.title}</h3>
-            <p className="mt-2 text-sm leading-relaxed text-brand-textSecondary">{item.description}</p>
-          </motion.div>
-        ))}
+              key={item.title}
+              variants={itemVariants}
+              whileHover={{ scale: 1.02, y: -4 }}
+              className="group rounded-[28px] border border-brand-border bg-gradient-to-br from-white to-brand-background p-6 shadow-soft transition-all hover:shadow-md"
+            >
+              <motion.div
+                initial={{ scale: 0 }}
+                animate={{ scale: 1 }}
+                transition={{ delay: 0.2, type: 'spring', stiffness: 200 }}
+                className="mb-4 flex h-10 w-10 items-center justify-center rounded-2xl bg-gradient-to-br from-brand-primary/20 to-brand-primary/10 text-brand-primary transition-all group-hover:from-brand-primary/30 group-hover:to-brand-primary/15"
+              >
+                <Icon className="h-5 w-5" />
+              </motion.div>
+              <h3 className="font-semibold text-brand-textPrimary">{item.title}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-brand-textSecondary">{item.description}</p>
+            </motion.div>
+          )
+        })}
       </motion.div>
     </section>
   )

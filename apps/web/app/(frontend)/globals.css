@@ -6,6 +6,11 @@
   color-scheme: light;
 }
 
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 6rem;
+}
+
 body {
   @apply bg-brand-background text-brand-textPrimary antialiased;
 }

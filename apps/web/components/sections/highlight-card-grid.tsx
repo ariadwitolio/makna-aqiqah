@@ -44,7 +44,7 @@ export function HighlightCardGrid({ title, description, highlights }: HighlightC
         <p className="mt-1 text-sm text-brand-textSecondary">{description}</p>
       </motion.div>
 
-      <motion.div variants={containerVariants} initial="hidden" animate="show" className="space-y-4">
+      <motion.div variants={containerVariants} initial="hidden" animate="show" className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {highlights.map((item) => {
           const Icon = resolveIcon(item.icon)
           return (

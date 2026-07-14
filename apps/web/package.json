@@ -4,12 +4,16 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "predev": "node scripts/generate-decap-config.mjs",
     "dev": "next dev",
+    "prebuild": "node scripts/generate-decap-config.mjs",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
     "preview": "opennextjs-cloudflare preview",
-    "deploy": "opennextjs-cloudflare deploy"
+    "predeploy": "node scripts/generate-decap-config.mjs",
+    "deploy": "opennextjs-cloudflare build && opennextjs-cloudflare deploy && opennextjs-cloudflare populateCache remote",
+    "cms:proxy": "decap-server"
   },
   "dependencies": {
     "@opennextjs/cloudflare": "1.14.2",
@@ -17,12 +21,14 @@
     "react": "19.2.0",
     "react-dom": "19.2.0",
     "framer-motion": "^11.11.10",
+    "gray-matter": "^4.0.3",
     "lucide-react": "^0.468.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.0",
     "tailwind-merge": "^2.4.0"
   },
   "devDependencies": {
+    "decap-server": "^3.2.0",
     "@types/node": "^22.10.1",
     "@types/react": "^19.2.0",
     "@types/react-dom": "^19.2.0",

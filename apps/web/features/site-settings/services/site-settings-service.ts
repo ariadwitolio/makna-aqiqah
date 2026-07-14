@@ -1,31 +1,29 @@
 import { cache } from 'react'
-import { fetchCMS, resolveCmsMediaUrl } from '@/lib/cms-client'
+import { readContentFile } from '@/lib/content/read'
 import type { SiteSettings } from '@/features/site-settings/types'
 
-interface SiteSettingsDoc {
-  logo?: { url?: string | null; alt?: string | null } | number | string | null
-  siteName: string
-  tagline: string
-  navItems?: Array<{ label: string; href: string }> | null
-  navCtaLabel: string
-  navCtaHref: string
-  companyName: string
-  whatsapp?: string | null
-  instagram?: string | null
-  facebook?: string | null
-  tiktok?: string | null
-  address?: string | null
-  operationalHours?: string | null
-}
-
-export const getSiteSettings = cache(async (): Promise<SiteSettings> => {
-  const doc = await fetchCMS<SiteSettingsDoc>('/api/globals/site-settings?depth=1')
-
-  const logo = doc.logo && typeof doc.logo === 'object' ? doc.logo : null
+export const getSiteSettings = cache((): SiteSettings => {
+  const doc = readContentFile('settings', 'site.md') as {
+    logo?: string | null
+    favicon?: string | null
+    siteName: string
+    tagline: string
+    navItems?: Array<{ label: string; href: string }>
+    navCtaLabel: string
+    navCtaHref: string
+    companyName: string
+    whatsapp?: string | null
+    instagram?: string | null
+    facebook?: string | null
+    tiktok?: string | null
+    address?: string | null
+    operationalHours?: string | null
+  }
 
   return {
-    logoUrl: resolveCmsMediaUrl(logo?.url),
-    logoAlt: logo?.alt ?? doc.siteName,
+    logoUrl: doc.logo ?? null,
+    logoAlt: doc.siteName,
+    faviconUrl: doc.favicon ?? null,
     siteName: doc.siteName,
     tagline: doc.tagline,
     navItems: (doc.navItems ?? []).map((item) => ({ label: item.label, href: item.href })),

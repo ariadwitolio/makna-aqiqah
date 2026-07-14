@@ -47,14 +47,14 @@ export function TestimonialGrid({ eyebrow, title, description, testimonials }: T
         initial="hidden"
         whileInView="show"
         viewport={{ once: true, margin: '-100px' }}
-        className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3"
+        className="mt-10 flex snap-x snap-mandatory gap-6 overflow-x-auto pb-2"
       >
         {testimonials.map((testimonial) => (
           <motion.div
             key={testimonial.id}
             variants={cardVariants}
             whileHover={{ scale: 1.02, y: -4 }}
-            className="rounded-[28px] border border-brand-border bg-gradient-to-br from-white to-brand-background p-6 shadow-soft transition-all hover:shadow-md"
+            className="w-[85%] flex-none snap-start rounded-[28px] border border-brand-border bg-gradient-to-br from-white to-brand-background p-6 shadow-soft transition-all hover:shadow-md sm:w-[calc(50%-0.75rem)] lg:w-[calc(33.333%-1rem)]"
           >
             <Quote className="h-6 w-6 text-brand-primary/60" />
             <p className="mt-4 text-sm leading-relaxed text-brand-textSecondary">{testimonial.quote}</p>

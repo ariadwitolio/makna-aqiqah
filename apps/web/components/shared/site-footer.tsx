@@ -26,17 +26,21 @@ export function SiteFooter({ footer }: SiteFooterProps) {
       <div className="flex flex-col items-center gap-4 text-center">
         <p className="text-lg font-bold text-brand-textPrimary">{footer.companyName}</p>
 
-        {footer.address ? (
-          <div className="flex items-start gap-2 text-sm text-brand-textSecondary">
-            <MapPin className="mt-0.5 h-4 w-4 flex-shrink-0 text-brand-primary" />
-            <span className="whitespace-pre-line">{footer.address}</span>
-          </div>
-        ) : null}
+        {footer.address || footer.operationalHours ? (
+          <div className="flex flex-col items-center gap-1.5">
+            {footer.address ? (
+              <div className="flex items-start gap-2 text-sm text-brand-textSecondary">
+                <MapPin className="mt-0.5 h-4 w-4 flex-shrink-0 text-brand-primary" />
+                <span className="whitespace-pre-line">{footer.address}</span>
+              </div>
+            ) : null}
 
-        {footer.operationalHours ? (
-          <div className="flex items-center gap-2 text-sm text-brand-textSecondary">
-            <Clock className="h-4 w-4 flex-shrink-0 text-brand-primary" />
-            <span>{footer.operationalHours}</span>
+            {footer.operationalHours ? (
+              <div className="flex items-center gap-2 text-sm text-brand-textSecondary">
+                <Clock className="h-4 w-4 flex-shrink-0 text-brand-primary" />
+                <span>{footer.operationalHours}</span>
+              </div>
+            ) : null}
           </div>
         ) : null}
 

@@ -1,0 +1,19 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!--
+      Anchors relative fetches (config.yml, etc.) to /admin/ regardless of
+      whether the browser shows /admin or /admin/ — needed because the
+      Basic Auth middleware serves this file directly at the bare /admin
+      path without a redirect, and Decap resolves config.yml relative to
+      the current URL.
+    -->
+    <base href="/admin/" />
+    <title>Content Manager — Makna Aqiqah</title>
+  </head>
+  <body>
+    <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+  </body>
+</html>

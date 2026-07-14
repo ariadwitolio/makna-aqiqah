@@ -3,7 +3,9 @@ export interface HomePageContent {
   heroTitle: string
   heroSubtitle: string
   heroCtaLabel: string
+  heroCtaHref: string
   heroSecondaryCtaLabel: string
+  heroSecondaryCtaHref: string
   heroImageUrl: string | null
   heroImageAlt: string
 
@@ -19,9 +21,11 @@ export interface HomePageContent {
   servicesTitle: string
   servicesDescription: string
   servicesSecondaryDescription: string
+  servicesImageUrl: string | null
   services: Array<{
     title: string
     description: string
+    icon: string
   }>
 
   packagesEyebrow: string

@@ -30,7 +30,7 @@ export function HomePageClient({ content, siteSettings }: HomePageClientProps) {
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="flex items-center justify-between rounded-full border border-brand-border bg-white/80 px-4 py-3 shadow-soft backdrop-blur-md"
+            className="sticky top-4 z-50 flex items-center justify-between rounded-full border border-brand-border bg-white/80 px-4 py-3 shadow-soft backdrop-blur-md"
           >
             <motion.div whileHover={{ scale: 1.05 }} className="flex items-center gap-3 cursor-pointer">
               {siteSettings.logoUrl ? (
@@ -68,19 +68,21 @@ export function HomePageClient({ content, siteSettings }: HomePageClientProps) {
             </motion.a>
           </motion.nav>
 
-          {/* Hero + Highlights Grid */}
-          <div className="grid gap-6 lg:grid-cols-[1.3fr_0.7fr]">
-            <HeroSection
-              badgeLabel={content.badgeLabel}
-              title={content.heroTitle}
-              subtitle={content.heroSubtitle}
-              ctaLabel={content.heroCtaLabel}
-              secondaryCtaLabel={content.heroSecondaryCtaLabel}
-              imageUrl={content.heroImageUrl}
-              imageAlt={content.heroImageAlt}
-            />
-            <HighlightCardGrid title={content.highlightTitle} description={content.highlightDescription} highlights={content.highlights} />
-          </div>
+          {/* Hero Section */}
+          <HeroSection
+            badgeLabel={content.badgeLabel}
+            title={content.heroTitle}
+            subtitle={content.heroSubtitle}
+            ctaLabel={content.heroCtaLabel}
+            ctaHref={content.heroCtaHref}
+            secondaryCtaLabel={content.heroSecondaryCtaLabel}
+            secondaryCtaHref={content.heroSecondaryCtaHref}
+            imageUrl={content.heroImageUrl}
+            imageAlt={content.heroImageAlt}
+          />
+
+          {/* Highlights Section */}
+          <HighlightCardGrid title={content.highlightTitle} description={content.highlightDescription} highlights={content.highlights} />
 
           {/* Services Section */}
           <motion.div
@@ -95,6 +97,7 @@ export function HomePageClient({ content, siteSettings }: HomePageClientProps) {
               title={content.servicesTitle}
               description={content.servicesDescription}
               secondaryDescription={content.servicesSecondaryDescription}
+              secondaryImageUrl={content.servicesImageUrl}
               items={content.services}
             />
           </motion.div>
@@ -124,7 +127,7 @@ export function HomePageClient({ content, siteSettings }: HomePageClientProps) {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true, margin: '-100px' }}
-            id="how-it-works"
+            id="order-flow"
           >
             <OrderFlowSection
               eyebrow={content.orderFlowEyebrow}

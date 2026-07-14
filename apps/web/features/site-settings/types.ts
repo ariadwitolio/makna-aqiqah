@@ -1,6 +1,7 @@
 export interface SiteSettings {
   logoUrl: string | null
   logoAlt: string
+  faviconUrl: string | null
   siteName: string
   tagline: string
   navItems: Array<{ label: string; href: string }>
