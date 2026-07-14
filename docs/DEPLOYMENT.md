@@ -215,6 +215,37 @@ suspect this pairing first — check `wrangler tail` for a `readAll` /
 `no such file or directory` error, and redo build → deploy → populateCache
 as one atomic sequence (which is exactly what `npm run deploy` now does).
 
+## Auto-deploy on CMS publish
+
+Decap CMS commits straight to `main` (see "Admin Basic Auth gate" — no
+editorial workflow, so "Save" = a real commit). But the live site is a
+static build, so a content change doesn't appear until `apps/web` is
+rebuilt and redeployed. `.github/workflows/deploy-web.yml` automates that:
+it runs on every push to `main` that touches `apps/web/**` (including the
+CMS's own commits) and does the same `npm run deploy` (build → deploy →
+populateCache) documented above.
+
+This intentionally does **not** make the live site fetch content from
+GitHub at request time — that would mean switching the homepage back to
+dynamic rendering (re-triggering the exact `fs`-in-Workers crash covered
+above, since Workers have no filesystem) and depending on GitHub's API
+being up and unrate-limited on every cold request. Auto-deploy keeps the
+site static and fast; content just takes a minute or two to go live
+instead of being instant.
+
+Required GitHub Actions secrets (repo → Settings → Secrets and variables →
+Actions):
+
+| Secret | Value |
+| --- | --- |
+| `CLOUDFLARE_API_TOKEN` | A Cloudflare API token with "Edit Cloudflare Workers" permissions (create one at <https://dash.cloudflare.com/profile/api-tokens> → Create Token → "Edit Cloudflare Workers" template). |
+| `CLOUDFLARE_ACCOUNT_ID` | Your Cloudflare account ID (shown by `wrangler whoami`, or on the dashboard's right sidebar). |
+| `NEXT_PUBLIC_DECAP_AUTH_BASE_URL` | Same value as in `apps/web/.env.local` — the `decap-oauth` Worker's URL. |
+
+`CMS_BASIC_AUTH_USER`/`CMS_BASIC_AUTH_PASSWORD` do **not** need to be CI
+secrets — they were already set once via `wrangler secret put` and persist
+on the Worker across deploys.
+
 ## Domain configuration (once purchased)
 
 Nothing in the code needs to change — every reference to a domain flows
