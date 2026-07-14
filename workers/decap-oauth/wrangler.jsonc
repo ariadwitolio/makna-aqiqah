@@ -1,0 +1,14 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "decap-oauth",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-07-12",
+  // GITHUB_CLIENT_ID is not secret (it's public in the GitHub authorize URL
+  // anyway), so it's safe to commit here. Set GITHUB_CLIENT_SECRET with:
+  //   wrangler secret put GITHUB_CLIENT_SECRET
+  "vars": {
+    "GITHUB_CLIENT_ID": "Ov23liWjaIPtnaK4YIXO"
+  }
+  // Once a custom domain is purchased, add a route here, e.g.:
+  // "routes": [{ "pattern": "cms-auth.example.com", "custom_domain": true }]
+}

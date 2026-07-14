@@ -9,7 +9,11 @@
   ],
   "assets": {
     "directory": ".open-next/assets",
-    "binding": "ASSETS"
+    "binding": "ASSETS",
+    // Without this, Cloudflare serves matching static files (e.g.
+    // /admin/index.html, /admin/config.yml) directly, bypassing the Worker
+    // — and therefore middleware.ts's Basic Auth gate — entirely.
+    "run_worker_first": ["/admin", "/admin/*"]
   },
   "images": {
     "binding": "IMAGES"
