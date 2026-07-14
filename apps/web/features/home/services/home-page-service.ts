@@ -23,7 +23,7 @@ export async function getHomePageContent(): Promise<HomePageContent> {
     packagesEyebrow: string
     packagesTitle: string
     packagesDescription: string
-    packages?: Array<{ name: string; price: string; description: string }>
+    packages?: Array<{ name: string; priceNotes?: string | null; priceCurrency: string; priceNominal: string; description: string }>
     packagesContactText: string
     packagesContactCtaLabel: string
     packagesContactCtaHref: string
@@ -77,7 +77,13 @@ export async function getHomePageContent(): Promise<HomePageContent> {
     packagesEyebrow: doc.packagesEyebrow,
     packagesTitle: doc.packagesTitle,
     packagesDescription: doc.packagesDescription,
-    packages: doc.packages ?? [],
+    packages: (doc.packages ?? []).map((pkg) => ({
+      name: pkg.name,
+      priceNotes: pkg.priceNotes ?? null,
+      priceCurrency: pkg.priceCurrency,
+      priceNominal: pkg.priceNominal,
+      description: pkg.description,
+    })),
     packagesContactText: doc.packagesContactText,
     packagesContactCtaLabel: doc.packagesContactCtaLabel,
     packagesContactCtaHref: doc.packagesContactCtaHref,

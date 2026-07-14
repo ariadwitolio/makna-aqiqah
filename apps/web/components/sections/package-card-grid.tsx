@@ -10,7 +10,9 @@ interface PackageCardGridProps {
   description: string
   packages: Array<{
     name: string
-    price: string
+    priceNotes: string | null
+    priceCurrency: string
+    priceNominal: string
     description: string
   }>
   contactText: string
@@ -66,9 +68,12 @@ export function PackageCardGrid({ eyebrow, title, description, packages, contact
                 <div className={`p-7 ${isFeatured ? 'pt-10' : ''}`}>
                   <p className="text-sm font-bold uppercase tracking-wide text-brand-primaryDark">{pkg.name}</p>
 
-                  <div className="mt-6 flex items-baseline gap-2">
-                    <span className="text-4xl font-bold text-brand-textPrimary">{pkg.price.split(' ')[1]}</span>
-                    <span className="text-sm text-brand-textSecondary">{pkg.price.split(' ')[0]}</span>
+                  <div className="mt-6">
+                    {pkg.priceNotes ? <p className="text-sm text-brand-textSecondary">{pkg.priceNotes}</p> : null}
+                    <div className="flex items-baseline gap-1.5">
+                      <span className="text-sm text-brand-textSecondary">{pkg.priceCurrency}</span>
+                      <span className="text-4xl font-bold text-brand-textPrimary">{pkg.priceNominal}</span>
+                    </div>
                   </div>
 
                   <p className="mt-4 text-base text-brand-textSecondary leading-relaxed">{pkg.description}</p>

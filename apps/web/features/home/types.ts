@@ -33,7 +33,9 @@ export interface HomePageContent {
   packagesDescription: string
   packages: Array<{
     name: string
-    price: string
+    priceNotes: string | null
+    priceCurrency: string
+    priceNominal: string
     description: string
   }>
   packagesContactText: string
