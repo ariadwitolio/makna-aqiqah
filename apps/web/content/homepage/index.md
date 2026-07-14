@@ -1,5 +1,5 @@
 ---
-badgeLabel: Dipercaya Sejak 2019
+badgeLabel: Dipercaya Sejak 201
 heroTitle: Kemudahan Menunaikan Ibadah Aqiqah
 heroSubtitle: Makna Aqiqah adalah penyedia layanan aqiqah siap saji yang
   mengutamakan kualitas bahan, proses pengolahan yang higienis, serta
