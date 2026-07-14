@@ -16,7 +16,13 @@ backend:
 
 local_backend: true
 
-publish_mode: editorial_workflow
+# No editorial_workflow: this is a single-admin site with no need for a
+# draft/review queue, and editorial_workflow's draft-cleanup step has a
+# known bug with single-file collections (Home Page, Site Settings) that
+# throws "Not allowed to delete entries in this collection" on publish.
+# Omitting publish_mode defaults to "simple" — Save commits straight to
+# main, no separate publish step.
+
 # Paths below are relative to the repo root (ariadwitolio/makna-aqiqah),
 # not to apps/web — this is a monorepo, so the app's own subdirectory must
 # be included explicitly. public_folder is a URL path, not a repo path, so
