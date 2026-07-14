@@ -1,5 +1,5 @@
 ---
-badgeLabel: Dipercaya Sejak 201
+badgeLabel: Dipercaya Sejak 2019
 heroTitle: Kemudahan Menunaikan Ibadah Aqiqah
 heroSubtitle: Makna Aqiqah adalah penyedia layanan aqiqah siap saji yang
   mengutamakan kualitas bahan, proses pengolahan yang higienis, serta
@@ -60,18 +60,18 @@ packagesTitle: Pilihan paket fleksibel untuk setiap momen keluarga.
 packagesDescription: Pilih paket yang sesuai dengan gaya perayaan dan kenyamanan
   Anda, atau customisasi sesuai kebutuhan.
 packages:
-  - name: Silver Celebration
-    price: Rp 2.4 Juta
-    description: Paket sempurna untuk gathering intim dengan kenyamanan premium dan
-      menu pilihan.
+  - name: Paket Anak Perempuan
+    price: Mulai dari Rp 2.250.000
+    description: Paket aqiqah anak perempuan dengan pilihan domba berkualitas serta
+      beragam menu masakan yang siap dibagikan kepada keluarga dan kerabat
   - name: Golden Family
     price: Rp 3.6 Juta
     description: Paket seimbang dengan presentasi elevasi, layanan lebih personal,
       dan menu eksklusif.
-  - name: Diamond Gathering
-    price: Rp 5.2 Juta
-    description: Pengalaman mewah dengan add-on premium, dokumentasi profesional,
-      dan layanan concierge.
+  - name: Paket Anak Laki-Laki
+    price: Mulai dari Rp 3.850.000
+    description: Paket aqiqah anak laki-laki dengan pilihan domba berkualitas dan
+      beragam menu olahan yang dapat disesuaikan dengan kebutuhan keluarga
 packagesContactText: Tidak menemukan paket yang cocok?
 packagesContactCtaLabel: Hubungi kami untuk konsultasi gratis
 packagesContactCtaHref: https://wa.me/6281380518651
