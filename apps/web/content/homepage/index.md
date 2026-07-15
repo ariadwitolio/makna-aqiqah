@@ -1,5 +1,5 @@
 ---
-badgeLabel: Dipercaya Sejak 2019
+badgeLabel: Dipercaya Sejak 201
 heroTitle: Kemudahan Menunaikan Ibadah Aqiqah
 heroSubtitle: Makna Aqiqah adalah penyedia layanan aqiqah siap saji yang
   mengutamakan kualitas bahan, proses pengolahan yang higienis, serta
@@ -63,13 +63,13 @@ packages:
   - name: Paket Anak Perempuan
     priceNotes: Mulai dari
     priceCurrency: Rp
-    priceNominal: "2.250.000"
+    priceNominal: 2.250.000
     description: Paket aqiqah anak perempuan dengan pilihan domba berkualitas serta
       beragam menu masakan yang siap dibagikan kepada keluarga dan kerabat
   - name: Paket Anak Laki-Laki
     priceNotes: Mulai dari
     priceCurrency: Rp
-    priceNominal: "3.850.000"
+    priceNominal: 3.850.000
     description: Paket aqiqah anak laki-laki dengan pilihan domba berkualitas dan
       beragam menu olahan yang dapat disesuaikan dengan kebutuhan keluarga
 packagesWhatsappMessage: Halo, saya tertarik dengan {{package}}, boleh minta info lebih lanjut?
