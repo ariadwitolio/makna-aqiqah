@@ -1,8 +1,6 @@
 import { motion } from 'framer-motion'
-import { CheckCircle2 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { SectionHeading } from '@/components/shared/section-heading'
-import { FeaturedBadge } from '@/components/shared/featured-badge'
 
 interface PackageCardGridProps {
   eyebrow: string
@@ -41,67 +39,41 @@ const cardVariants = {
 }
 
 export function PackageCardGrid({ eyebrow, title, description, packages, contactText, contactCtaLabel, contactCtaHref }: PackageCardGridProps) {
-  const featuredIndex = 1 // Middle package (Golden Family)
-
   return (
     <section className="rounded-[32px] border border-brand-border bg-white p-8 shadow-soft lg:p-10">
       <SectionHeading eyebrow={eyebrow} title={title} description={description} className="max-w-2xl" />
 
-      <motion.div variants={containerVariants} initial="hidden" animate="show" className="mt-10 grid gap-6 lg:grid-cols-3">
-        {packages.map((pkg, index) => {
-          const isFeatured = index === featuredIndex
-          return (
-            <motion.div key={pkg.name} variants={cardVariants} whileHover={isFeatured ? { scale: 1.02, y: -8 } : { scale: 1.01 }}>
-              <div
-                className={`group relative rounded-[28px] border transition-all duration-300 ${
-                  isFeatured
-                    ? 'border-brand-primary bg-gradient-to-br from-brand-primary/15 to-brand-primary/5 shadow-lg'
-                    : 'border-brand-border bg-gradient-to-br from-white to-brand-background hover:shadow-md'
-                }`}
-              >
-                {isFeatured && (
-                  <div className="absolute -top-3 left-6">
-                    <FeaturedBadge label="Pilihan Terpopuler" />
+      <motion.div
+        variants={containerVariants}
+        initial="hidden"
+        animate="show"
+        className="mt-10 grid gap-6 [grid-template-columns:repeat(auto-fit,minmax(260px,1fr))]"
+      >
+        {packages.map((pkg) => (
+          <motion.div key={pkg.name} variants={cardVariants} whileHover={{ scale: 1.01 }}>
+            <div className="group rounded-[28px] border border-brand-border bg-gradient-to-br from-white to-brand-background transition-all duration-300 hover:shadow-md">
+              <div className="p-7">
+                <p className="text-sm font-bold uppercase tracking-wide text-brand-primaryDark">{pkg.name}</p>
+
+                <div className="mt-6">
+                  {pkg.priceNotes ? <p className="text-sm text-brand-textSecondary">{pkg.priceNotes}</p> : null}
+                  <div className="flex items-baseline gap-1.5">
+                    <span className="text-sm text-brand-textSecondary">{pkg.priceCurrency}</span>
+                    <span className="text-4xl font-bold text-brand-textPrimary">{pkg.priceNominal}</span>
                   </div>
-                )}
-
-                <div className={`p-7 ${isFeatured ? 'pt-10' : ''}`}>
-                  <p className="text-sm font-bold uppercase tracking-wide text-brand-primaryDark">{pkg.name}</p>
-
-                  <div className="mt-6">
-                    {pkg.priceNotes ? <p className="text-sm text-brand-textSecondary">{pkg.priceNotes}</p> : null}
-                    <div className="flex items-baseline gap-1.5">
-                      <span className="text-sm text-brand-textSecondary">{pkg.priceCurrency}</span>
-                      <span className="text-4xl font-bold text-brand-textPrimary">{pkg.priceNominal}</span>
-                    </div>
-                  </div>
-
-                  <p className="mt-4 text-base text-brand-textSecondary leading-relaxed">{pkg.description}</p>
-
-                  {isFeatured && (
-                    <div className="mt-6 space-y-3 border-t border-brand-border/40 pt-6">
-                      {['Menu premium pilihan', 'Presentasi elegan', 'Dokumentasi profesional'].map((feature) => (
-                        <div key={feature} className="flex items-center gap-3 text-sm text-brand-textSecondary">
-                          <CheckCircle2 className="h-4 w-4 flex-shrink-0 text-brand-success" />
-                          {feature}
-                        </div>
-                      ))}
-                    </div>
-                  )}
-
-                  <motion.div
-                    whileHover={{ x: 4 }}
-                    className="mt-8"
-                  >
-                    <Button variant={isFeatured ? 'default' : 'outline'} className="w-full">
-                      Pilih Paket
-                    </Button>
-                  </motion.div>
                 </div>
+
+                <p className="mt-4 text-base text-brand-textSecondary leading-relaxed">{pkg.description}</p>
+
+                <motion.div whileHover={{ x: 4 }} className="mt-8">
+                  <Button variant="outline" className="w-full">
+                    Pilih Paket
+                  </Button>
+                </motion.div>
               </div>
-            </motion.div>
-          )
-        })}
+            </div>
+          </motion.div>
+        ))}
       </motion.div>
 
       <motion.div
