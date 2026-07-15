@@ -56,26 +56,16 @@ services:
     description: Konsultasi paket sesuai kebutuhan dan anggaran
     icon: circle-help
 packagesEyebrow: Paket Aqiqah
-packagesTitle: Pilihan paket fleksibel untuk setiap momen keluarga.
+packagesTitle: Pilihan paket fleksibel untuk setiap momen keluarga
 packagesDescription: Pilih paket yang sesuai dengan gaya perayaan dan kenyamanan
-  Anda, atau customisasi sesuai kebutuhan.
+  Anda, atau customisasi sesuai kebutuhan
 packages:
   - name: Paket Anak Perempuan
-    priceNotes: Mulai dari
-    priceCurrency: Rp
-    priceNominal: "2.250.000"
+    price: Mulai dari Rp 2.250.000
     description: Paket aqiqah anak perempuan dengan pilihan domba berkualitas serta
       beragam menu masakan yang siap dibagikan kepada keluarga dan kerabat
-  - name: Golden Family
-    priceNotes: ""
-    priceCurrency: Rp
-    priceNominal: 3.6 Juta
-    description: Paket seimbang dengan presentasi elevasi, layanan lebih personal,
-      dan menu eksklusif.
   - name: Paket Anak Laki-Laki
-    priceNotes: Mulai dari
-    priceCurrency: Rp
-    priceNominal: "3.850.000"
+    price: Mulai dari Rp 3.850.000
     description: Paket aqiqah anak laki-laki dengan pilihan domba berkualitas dan
       beragam menu olahan yang dapat disesuaikan dengan kebutuhan keluarga
 packagesContactText: Tidak menemukan paket yang cocok?
