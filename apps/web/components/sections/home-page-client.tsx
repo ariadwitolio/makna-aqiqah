@@ -200,7 +200,7 @@ export function HomePageClient({ content, siteSettings }: HomePageClientProps) {
         </section>
       </main>
 
-      <FloatingWhatsAppButton />
+      <FloatingWhatsAppButton whatsappNumber={siteSettings.footer.whatsapp} />
     </>
   )
 }

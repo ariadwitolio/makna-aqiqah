@@ -3,8 +3,13 @@
 import { motion } from 'framer-motion'
 import { MessageCircle } from 'lucide-react'
 
-export function FloatingWhatsAppButton() {
-  const whatsappNumber = '62812345678' // Replace with actual number
+interface FloatingWhatsAppButtonProps {
+  whatsappNumber: string | null
+}
+
+export function FloatingWhatsAppButton({ whatsappNumber }: FloatingWhatsAppButtonProps) {
+  if (!whatsappNumber) return null
+
   const message = 'Halo Makna Aqiqah! Saya tertarik dengan layanan aqiqah Anda. Bisa konsultasi gratis?'
   const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`
 
