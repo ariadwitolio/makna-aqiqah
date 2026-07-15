@@ -24,6 +24,7 @@ export async function getHomePageContent(): Promise<HomePageContent> {
     packagesTitle: string
     packagesDescription: string
     packages?: Array<{ name: string; priceNotes?: string | null; priceCurrency: string; priceNominal: string; description: string }>
+    packagesWhatsappMessage: string
     packagesContactText: string
     packagesContactCtaLabel: string
     packagesContactCtaHref: string
@@ -84,6 +85,7 @@ export async function getHomePageContent(): Promise<HomePageContent> {
       priceNominal: pkg.priceNominal,
       description: pkg.description,
     })),
+    packagesWhatsappMessage: doc.packagesWhatsappMessage,
     packagesContactText: doc.packagesContactText,
     packagesContactCtaLabel: doc.packagesContactCtaLabel,
     packagesContactCtaHref: doc.packagesContactCtaHref,

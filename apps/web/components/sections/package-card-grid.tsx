@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { Button } from '@/components/ui/button'
+import { buttonVariants } from '@/components/ui/button'
 import { SectionHeading } from '@/components/shared/section-heading'
 
 interface PackageCardGridProps {
@@ -13,6 +13,8 @@ interface PackageCardGridProps {
     priceNominal: string
     description: string
   }>
+  whatsappMessage: string
+  whatsappNumber: string | null
   contactText: string
   contactCtaLabel: string
   contactCtaHref: string
@@ -38,7 +40,17 @@ const cardVariants = {
   },
 }
 
-export function PackageCardGrid({ eyebrow, title, description, packages, contactText, contactCtaLabel, contactCtaHref }: PackageCardGridProps) {
+export function PackageCardGrid({
+  eyebrow,
+  title,
+  description,
+  packages,
+  whatsappMessage,
+  whatsappNumber,
+  contactText,
+  contactCtaLabel,
+  contactCtaHref,
+}: PackageCardGridProps) {
   return (
     <section className="rounded-[32px] border border-brand-border bg-white p-8 shadow-soft lg:p-10">
       <SectionHeading eyebrow={eyebrow} title={title} description={description} className="max-w-2xl" />
@@ -49,31 +61,42 @@ export function PackageCardGrid({ eyebrow, title, description, packages, contact
         animate="show"
         className="mt-10 grid gap-6 [grid-template-columns:repeat(auto-fit,minmax(260px,1fr))]"
       >
-        {packages.map((pkg) => (
-          <motion.div key={pkg.name} variants={cardVariants} whileHover={{ scale: 1.01 }}>
-            <div className="group rounded-[28px] border border-brand-border bg-gradient-to-br from-white to-brand-background transition-all duration-300 hover:shadow-md">
-              <div className="p-7">
-                <p className="text-sm font-bold uppercase tracking-wide text-brand-primaryDark">{pkg.name}</p>
+        {packages.map((pkg) => {
+          const href = whatsappNumber
+            ? `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage.replaceAll('{{package}}', pkg.name))}`
+            : '#'
 
-                <div className="mt-6">
-                  {pkg.priceNotes ? <p className="text-sm text-brand-textSecondary">{pkg.priceNotes}</p> : null}
-                  <div className="flex items-baseline gap-1.5">
-                    <span className="text-sm text-brand-textSecondary">{pkg.priceCurrency}</span>
-                    <span className="text-4xl font-bold text-brand-textPrimary">{pkg.priceNominal}</span>
+          return (
+            <motion.div key={pkg.name} variants={cardVariants} whileHover={{ scale: 1.01 }}>
+              <div className="group rounded-[28px] border border-brand-border bg-gradient-to-br from-white to-brand-background transition-all duration-300 hover:shadow-md">
+                <div className="p-7">
+                  <p className="text-sm font-bold uppercase tracking-wide text-brand-primaryDark">{pkg.name}</p>
+
+                  <div className="mt-6">
+                    {pkg.priceNotes ? <p className="text-sm text-brand-textSecondary">{pkg.priceNotes}</p> : null}
+                    <div className="flex items-baseline gap-1.5">
+                      <span className="text-sm text-brand-textSecondary">{pkg.priceCurrency}</span>
+                      <span className="text-4xl font-bold text-brand-textPrimary">{pkg.priceNominal}</span>
+                    </div>
                   </div>
-                </div>
 
-                <p className="mt-4 text-base text-brand-textSecondary leading-relaxed">{pkg.description}</p>
+                  <p className="mt-4 text-base text-brand-textSecondary leading-relaxed">{pkg.description}</p>
 
-                <motion.div whileHover={{ x: 4 }} className="mt-8">
-                  <Button variant="outline" className="w-full">
+                  <motion.a
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    className={buttonVariants({ className: 'mt-8 w-full' })}
+                  >
                     Pilih Paket
-                  </Button>
-                </motion.div>
+                  </motion.a>
+                </div>
               </div>
-            </div>
-          </motion.div>
-        ))}
+            </motion.div>
+          )
+        })}
       </motion.div>
 
       <motion.div

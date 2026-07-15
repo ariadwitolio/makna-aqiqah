@@ -115,6 +115,8 @@ export function HomePageClient({ content, siteSettings }: HomePageClientProps) {
               title={content.packagesTitle}
               description={content.packagesDescription}
               packages={content.packages}
+              whatsappMessage={content.packagesWhatsappMessage}
+              whatsappNumber={siteSettings.footer.whatsapp}
               contactText={content.packagesContactText}
               contactCtaLabel={content.packagesContactCtaLabel}
               contactCtaHref={content.packagesContactCtaHref}

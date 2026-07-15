@@ -38,6 +38,7 @@ export interface HomePageContent {
     priceNominal: string
     description: string
   }>
+  packagesWhatsappMessage: string
   packagesContactText: string
   packagesContactCtaLabel: string
   packagesContactCtaHref: string

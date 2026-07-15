@@ -90,6 +90,10 @@ collections:
               - { label: Price Currency, name: priceCurrency, widget: string, hint: "e.g. Rp" }
               - { label: Price Nominal, name: priceNominal, widget: string, hint: "e.g. 2.250.000 or 3.6 Juta — the emphasized part" }
               - { label: Description, name: description, widget: text }
+          - label: Package Button WhatsApp Message
+            name: packagesWhatsappMessage
+            widget: string
+            hint: "Use {{package}} to insert the package name. Sent to the WhatsApp number in Site Settings when a \"Pilih Paket\" button is clicked."
           - { label: Packages Contact Text, name: packagesContactText, widget: string }
           - { label: Packages Contact CTA Label, name: packagesContactCtaLabel, widget: string }
           - { label: Packages Contact CTA Link, name: packagesContactCtaHref, widget: string }

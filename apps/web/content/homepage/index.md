@@ -72,6 +72,7 @@ packages:
     priceNominal: "3.850.000"
     description: Paket aqiqah anak laki-laki dengan pilihan domba berkualitas dan
       beragam menu olahan yang dapat disesuaikan dengan kebutuhan keluarga
+packagesWhatsappMessage: Halo, saya tertarik dengan {{package}}, boleh minta info lebih lanjut?
 packagesContactText: Tidak menemukan paket yang cocok?
 packagesContactCtaLabel: Hubungi kami untuk konsultasi gratis
 packagesContactCtaHref: https://wa.me/6281380518651
